@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class Tile : MonoBehaviour {
 
-	//number with setter and
+	//swicth to see of a tile has already merged.
+	public bool hasMerged = false;
+
+	//number with setter and getter practicing C# syntax
 	private int number;
 	public int Number{
 		get{
@@ -96,6 +99,7 @@ public class Tile : MonoBehaviour {
 		_TileText.enabled = false;
 		_TileImage.enabled = false;
 	}
+
 	// Use this for initialization
 	void Start () {
 	

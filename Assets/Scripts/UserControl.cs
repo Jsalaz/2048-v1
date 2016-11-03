@@ -9,10 +9,12 @@ public enum Direction{
 public class UserControl : MonoBehaviour {
 	
 	public static UserControl instance;
+	//public GameManager game;
 
 	//awake
 	void Awake(){
 		instance = this;
+		//game = GameObject.FindObjectOfType<GameManager> ();
 	}
 
 	// Use this for initialization
@@ -32,7 +34,7 @@ public class UserControl : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
 			GameManager.instance.Move (Direction.Right);
 		}else		
-			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 			GameManager.instance.Move (Direction.Left);
 		}
 	}
