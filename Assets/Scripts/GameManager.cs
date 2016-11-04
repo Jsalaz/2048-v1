@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void NewGameButton(){
+		ScoreTracker.instance.Score = 0;
+		GameOver.instance.ShowGameOver (false);
 		Start ();
 		//Scene scene = SceneManager.GetActiveScene ();
 		//SceneManager.LoadScene(scene.name);
@@ -87,8 +89,6 @@ public class GameManager : MonoBehaviour {
 	bool MoveIndexDown(Tile[] TileLine){
 		Debug.Log (TileLine.Length);
 		for (int i = 0; i < TileLine.Length-1; i++) {
-
-
 			//first make all available moves
 			//Moving non empty tile to empty tile
 			//if TileLine[i] is empty and TileLine[i+1] is not empty then move non-empty to empty
@@ -157,6 +157,7 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 	}
+
 	// Update is called once per frame
 	/*void Update () {
 		//delete this conditional after testing
@@ -197,6 +198,33 @@ public class GameManager : MonoBehaviour {
 		if (hasMoved) {
 			ResetEmpty ();
 			TileGenerator ();
+			if (!CanMove()) {
+				GameOver.instance.ShowGameOver (true);
+			}
 		}
+	}
+
+	bool CanMove(){
+		if (EmptySpacesList.Count > 0) {
+			return true;
+		} else {
+			//checks collumns
+			for (int i =0; i < collumns.Count; i++){
+				for(int j = 0; j < rows.Count-1; j++){
+					if (allTiles[j,i].Number == allTiles[j+1, i].Number){
+						return true;
+					}
+				}
+			}
+			//checks rows
+			for (int i =0; i < rows.Count; i++){
+				for(int j = 0; j < collumns.Count-1; j++){
+					if (allTiles[i, j].Number == allTiles[i, j+1].Number){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
