@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour {
 
-	public Text gameOver;
+	public GameObject gameOverText;
+	public GameObject winText;
 	public Text gameOverScore;
 
 	public static GameOver instance;
@@ -13,6 +14,16 @@ public class GameOver : MonoBehaviour {
 
 	void Awake (){
 		instance = this;
+	}
+
+	public void YouWon(){
+		gameOverText.SetActive (false);
+		winText.SetActive (true);
+	}
+
+	public void YouLost(){
+		gameOverText.SetActive (true);
+		winText.SetActive (false);
 	}
 
 	public void ShowGameOver(bool check){

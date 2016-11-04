@@ -107,6 +107,10 @@ public class GameManager : MonoBehaviour {
 				TileLine [i + 1].Number = 0;
 				TileLine [i].hasMerged = true;
 				ScoreTracker.instance.Score += TileLine [i].Number;
+				if(TileLine[i].Number == 2048){
+					GameOver.instance.YouWon ();
+					GameOver.instance.ShowGameOver (true);
+				}
 				return true;
 				//TileLine [i+1].hasMerged = true;
 			}
@@ -135,6 +139,10 @@ public class GameManager : MonoBehaviour {
 				TileLine [i - 1].Number = 0;
 				TileLine [i].hasMerged = true;
 				ScoreTracker.instance.Score += TileLine [i].Number;
+				if(TileLine[i].Number == 2048){
+					GameOver.instance.YouWon ();
+					GameOver.instance.ShowGameOver (true);
+				}
 				return true;
 				//TileLine [i+1].hasMerged = true;
 			}
@@ -199,6 +207,7 @@ public class GameManager : MonoBehaviour {
 			ResetEmpty ();
 			TileGenerator ();
 			if (!CanMove()) {
+				GameOver.instance.YouLost ();
 				GameOver.instance.ShowGameOver (true);
 			}
 		}
