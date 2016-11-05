@@ -24,18 +24,17 @@ public class UserControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			GameManager.instance.Move (Direction.Up);
-			//GameManager.instance.Move (Direction.Up);
-		}else
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			GameManager.instance.Move (Direction.Down);
-		}else
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			GameManager.instance.Move (Direction.Right);
-		}else		
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			GameManager.instance.Move (Direction.Left);
+		if (GameManager.instance.State == GameState.Idle) {
+			if (Input.GetKeyDown (KeyCode.UpArrow)) {
+				GameManager.instance.Move (Direction.Up);
+				//GameManager.instance.Move (Direction.Up);
+			} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+				GameManager.instance.Move (Direction.Down);
+			} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				GameManager.instance.Move (Direction.Right);
+			} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				GameManager.instance.Move (Direction.Left);
+			}
 		}
 	}
 }

@@ -3,9 +3,22 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum GameState{
+	Idle, Moving, GameOver
+}
+
 public class GameManager : MonoBehaviour {
 
-	//singleton causes problems
+	public GameState State;
+
+	//attribute for the unity inspector
+	[Range(0, 2f)]
+	public float delay;
+	bool hasMoved;
+
+	private bool[] lineMoveComplete =new bool[4]{true, true, true, true,};
+
+	//singleton causes problems sometimes
 	public static GameManager instance;
 
 	//sets tiles to 0 set to private later
@@ -55,6 +68,8 @@ public class GameManager : MonoBehaviour {
 		Debug.Log (tempd[1].Number);
 		Debug.Log (tempd[2].Number);
 		*/
+
+		State = GameState.Idle;
 
 		TileGenerator ();
 		TileGenerator ();
@@ -177,40 +192,116 @@ public class GameManager : MonoBehaviour {
 	public void Move(Direction dir){
 		Debug.Log ("In Move method collumns count " + collumns.Count);
 
-		bool hasMoved = false;
-		for (int i = 0; i < 4; i++) {
-			switch (dir) {
-			case Direction.Up:
-				while(MoveIndexDown(collumns[i])){
-					hasMoved = true;
+		hasMoved = false;
+		ResetEmpty ();
+		if (delay > 0) {
+			StartCoroutine (MoveCoroutine (dir));
+		} else {
+			for (int i = 0; i < 4; i++) {
+				switch (dir) {
+				case Direction.Up:
+					while (MoveIndexDown (collumns [i])) {
+						hasMoved = true;
+					}
+					break;
+				case Direction.Down:
+					while (MoveIndexUp (collumns [i])) {
+						hasMoved = true;
+					}
+					break;
+				case Direction.Left:
+					while (MoveIndexDown (rows [i])) {
+						hasMoved = true;
+					}
+					break;
+				case Direction.Right:
+					while (MoveIndexUp (rows [i])) {
+						hasMoved = true;
+					}
+					break;
 				}
-				break;
-			case Direction.Down:
-				while (MoveIndexUp (collumns[i])) {
-					hasMoved = true;
-				}
-				break;
-			case Direction.Left:
-				while(MoveIndexDown(rows[i])){
-					hasMoved = true;
-				}
-				break;
-			case Direction.Right:
-				while (MoveIndexUp (rows [i])) {
-					hasMoved = true;
-				}
-				break;
 			}
+
+			if (hasMoved) {
+				ResetEmpty ();
+				TileGenerator ();
+				if (!CanMove ()) {
+					GameOver.instance.YouLost ();
+					GameOver.instance.ShowGameOver (true);
+				}
+			}
+		}
+	}
+
+	/******************************************************************************/
+	/* Coroutine*/
+	IEnumerator MoveCoroutine(Direction dir){
+		State = GameState.Moving;
+
+		switch (dir) {
+
+		case Direction.Down:
+			for (int i = 0; i < collumns.Count; i++) {
+				StartCoroutine(MoveOneLineUpCoroutine(collumns[i], i));
+			}
+			break;
+
+		case Direction.Up:
+			for (int i = 0; i < collumns.Count; i++) {
+				StartCoroutine(MoveOneLineDownCoroutine(collumns[i], i));
+			}
+			break;
+
+		case Direction.Left:
+			for (int i = 0; i < rows.Count; i++) {
+				StartCoroutine(MoveOneLineDownCoroutine(rows[i], i));
+			}
+			break;
+
+		case Direction.Right:
+			for (int i = 0; i < rows.Count; i++) {
+				StartCoroutine(MoveOneLineUpCoroutine(rows[i], i));
+			}
+			break;
+		}
+
+		//wait for all moves to be over
+		while (!(lineMoveComplete [0] && lineMoveComplete [1] && lineMoveComplete [2] && lineMoveComplete [3])) {
+			yield return null;
 		}
 
 		if (hasMoved) {
 			ResetEmpty ();
 			TileGenerator ();
-			if (!CanMove()) {
+
+			if (!CanMove ()) {
 				GameOver.instance.YouLost ();
 				GameOver.instance.ShowGameOver (true);
+			} else {
+				State = GameState.Idle;
 			}
+
 		}
+	}
+
+	/* Coroutine*/
+	IEnumerator MoveOneLineDownCoroutine(Tile[] line, int index){
+		lineMoveComplete [index] = false;
+		while(MoveIndexDown(line)){
+			hasMoved = true;
+			yield return  new WaitForSeconds (delay);
+		}
+		lineMoveComplete [index] = true;
+	}
+
+	/* Coroutine*/
+	IEnumerator MoveOneLineUpCoroutine(Tile[] line, int index){
+		lineMoveComplete [index] = false;
+		while(MoveIndexUp(line)){
+			hasMoved = true;
+			yield return  new WaitForSeconds (delay);
+		}
+		lineMoveComplete [index] = true;
 	}
 
 	bool CanMove(){

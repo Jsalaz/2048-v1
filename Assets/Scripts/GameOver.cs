@@ -17,11 +17,13 @@ public class GameOver : MonoBehaviour {
 	}
 
 	public void YouWon(){
+		GameManager.instance.State = GameState.GameOver;
 		gameOverText.SetActive (false);
 		winText.SetActive (true);
 	}
 
 	public void YouLost(){
+		GameManager.instance.State = GameState.GameOver;
 		gameOverText.SetActive (true);
 		winText.SetActive (false);
 	}
@@ -40,4 +42,5 @@ public class GameOver : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }
