@@ -26,12 +26,14 @@ public class Tile : MonoBehaviour {
 		
 	private Text _TileText;
 	private Image _TileImage;
+	private Animator _TileAnim;
 
 	public int rowLocation;
 	public int colLocation;
 
 	//gets current number and image from tile
 	void Awake(){
+		_TileAnim = GetComponent<Animator> ();
 		_TileText = GetComponentInChildren<Text> ();
 		_TileImage = transform.GetComponent<Image> ();
 		//_TileImage = transform.Find ("GameTileX").GetComponent<Image> ();
@@ -98,6 +100,14 @@ public class Tile : MonoBehaviour {
 	private void HideTile(){
 		_TileText.enabled = false;
 		_TileImage.enabled = false;
+	}
+
+	public void playSpawn(){
+		_TileAnim.SetTrigger ("Spawn");
+	}
+
+	public void playMerge(){
+		_TileAnim.SetTrigger ("Merge");
 	}
 
 	// Use this for initialization

@@ -93,11 +93,14 @@ public class GameManager : MonoBehaviour {
 			int rNum = Random.Range(0, 8);
 			if (rNum == 4) {
 				EmptySpacesList [index].Number = 4;
-				EmptySpacesList.RemoveAt (index);
+				//EmptySpacesList.RemoveAt (index);
 			} else {
 				EmptySpacesList [index].Number = 2;
-				EmptySpacesList.RemoveAt (index);
+				//EmptySpacesList.RemoveAt (index);
 			}
+			EmptySpacesList [index].playSpawn ();
+			EmptySpacesList.RemoveAt (index);
+
 		}
 	}
 
@@ -121,6 +124,7 @@ public class GameManager : MonoBehaviour {
 				TileLine [i].Number = TileLine [i].Number * 2;
 				TileLine [i + 1].Number = 0;
 				TileLine [i].hasMerged = true;
+				TileLine [i].playMerge ();
 				ScoreTracker.instance.Score += TileLine [i].Number;
 				if(TileLine[i].Number == 2048){
 					GameOver.instance.YouWon ();
@@ -130,7 +134,7 @@ public class GameManager : MonoBehaviour {
 				//TileLine [i+1].hasMerged = true;
 			}
 		}
-		ResetHasMerged ();
+		//ResetHasMerged ();
 		return false;
 	}
 
@@ -152,6 +156,7 @@ public class GameManager : MonoBehaviour {
 			{
 				TileLine [i].Number = TileLine [i].Number * 2;
 				TileLine [i - 1].Number = 0;
+				TileLine [i].playMerge ();
 				TileLine [i].hasMerged = true;
 				ScoreTracker.instance.Score += TileLine [i].Number;
 				if(TileLine[i].Number == 2048){
@@ -162,7 +167,7 @@ public class GameManager : MonoBehaviour {
 				//TileLine [i+1].hasMerged = true;
 			}
 		}
-		ResetHasMerged ();
+		//ResetHasMerged ();
 		return false;
 	}
 
@@ -193,7 +198,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log ("In Move method collumns count " + collumns.Count);
 
 		hasMoved = false;
-		ResetEmpty ();
+		ResetHasMerged ();
 		if (delay > 0) {
 			StartCoroutine (MoveCoroutine (dir));
 		} else {
@@ -241,25 +246,25 @@ public class GameManager : MonoBehaviour {
 		switch (dir) {
 
 		case Direction.Down:
-			for (int i = 0; i < collumns.Count; i++) {
+			for (int i = 0; i < 4; i++) {
 				StartCoroutine(MoveOneLineUpCoroutine(collumns[i], i));
 			}
 			break;
 
 		case Direction.Up:
-			for (int i = 0; i < collumns.Count; i++) {
+			for (int i = 0; i < 4; i++) {
 				StartCoroutine(MoveOneLineDownCoroutine(collumns[i], i));
 			}
 			break;
 
 		case Direction.Left:
-			for (int i = 0; i < rows.Count; i++) {
+			for (int i = 0; i < 4; i++) {
 				StartCoroutine(MoveOneLineDownCoroutine(rows[i], i));
 			}
 			break;
 
 		case Direction.Right:
-			for (int i = 0; i < rows.Count; i++) {
+			for (int i = 0; i < 4; i++) {
 				StartCoroutine(MoveOneLineUpCoroutine(rows[i], i));
 			}
 			break;
@@ -278,10 +283,13 @@ public class GameManager : MonoBehaviour {
 				GameOver.instance.YouLost ();
 				GameOver.instance.ShowGameOver (true);
 			} else {
-				State = GameState.Idle;
+				//State = GameState.Idle;
 			}
 
+			//State = GameState.Idle;
+			StopAllCoroutines ();
 		}
+		State = GameState.Idle;
 	}
 
 	/* Coroutine*/
@@ -327,4 +335,6 @@ public class GameManager : MonoBehaviour {
 		}
 		return false;
 	}
+
+
 }
