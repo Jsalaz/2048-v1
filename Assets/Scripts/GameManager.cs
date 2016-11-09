@@ -193,7 +193,8 @@ public class GameManager : MonoBehaviour {
 			TileGenerator();
 		}
 	}
-*/
+	*/
+
 	public void Move(Direction dir){
 		Debug.Log ("In Move method collumns count " + collumns.Count);
 

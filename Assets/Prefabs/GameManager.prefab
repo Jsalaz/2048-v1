@@ -21,7 +21,9 @@ GameObject:
   - 4: {fileID: 4000012393135252}
   - 114: {fileID: 114000014262880608}
   - 114: {fileID: 114000013588252326}
-  - 114: {fileID: 114000010445512674}
+  - 114: {fileID: 114000013730392628}
+  - 114: {fileID: 114000013429513846}
+  - 114: {fileID: 114000010871091440}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -42,7 +44,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000010445512674
+--- !u!114 &114000010871091440
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,10 +52,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014009294144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09b3db3492a1214c92afd1b5c67a3c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dcaf3c828b76584c9a2f56017caf0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetTiles: []
+  gameOverText: {fileID: 0}
+  winText: {fileID: 0}
+  gameOverScore: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+--- !u!114 &114000013429513846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014009294144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb76e098352120418d6f106ac8de78c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 0}
+  HighScoreText: {fileID: 0}
 --- !u!114 &114000013588252326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,80 +87,91 @@ MonoBehaviour:
   - tileNumber: 2
     tileColor:
       serializedVersion: 2
-      rgba: 4292006610
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4278190080
+    SchoolLogo: {fileID: 21300000, guid: b5203e1ba86165948b36c82c15529076, type: 3}
   - tileNumber: 4
     tileColor:
       serializedVersion: 2
-      rgba: 4289045925
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4278190080
+    SchoolLogo: {fileID: 21300000, guid: 411f7a9f16aaefa4f9c5bec5cee0f774, type: 3}
   - tileNumber: 8
     tileColor:
       serializedVersion: 2
-      rgba: 4285953654
+      rgba: 4292006610
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: 47e390046eaab1b46988da80d05a7c31, type: 3}
   - tileNumber: 16
     tileColor:
       serializedVersion: 2
-      rgba: 4282269246
+      rgba: 4292006610
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: 8082a6900e4600149aa94ccbfc6eba5f, type: 3}
   - tileNumber: 32
     tileColor:
       serializedVersion: 2
-      rgba: 4292581592
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4278190080
+    SchoolLogo: {fileID: 21300000, guid: 3f5b1e80d50449d4094a23028c11a9d9, type: 3}
   - tileNumber: 64
     tileColor:
       serializedVersion: 2
-      rgba: 4294915506
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4278190080
+    SchoolLogo: {fileID: 21300000, guid: 4706b7fca08acb44a917db95cef43616, type: 3}
   - tileNumber: 128
     tileColor:
       serializedVersion: 2
-      rgba: 4290838648
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: 8f0143e26cafbcc418c872cd999fb5a1, type: 3}
   - tileNumber: 256
     tileColor:
       serializedVersion: 2
-      rgba: 4283695156
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: c580b09e819c1f443989521a2d69504e, type: 3}
   - tileNumber: 512
     tileColor:
       serializedVersion: 2
-      rgba: 4283124480
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: 589a1b91dd7745d48a47f0a1e3ebbd2c, type: 3}
   - tileNumber: 1024
     tileColor:
       serializedVersion: 2
-      rgba: 4287072000
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: 7d178d7dfebe00e4cbf323a629fb884a, type: 3}
   - tileNumber: 2048
     tileColor:
       serializedVersion: 2
-      rgba: 4291611648
+      rgba: 4294967295
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 21300000, guid: 83d3e2c9f2ba9b146be23303985abce1, type: 3}
   - tileNumber: 0
     tileColor:
       serializedVersion: 2
@@ -150,6 +179,37 @@ MonoBehaviour:
     tileTextColor:
       serializedVersion: 2
       rgba: 4294967295
+    SchoolLogo: {fileID: 0}
+--- !u!114 &114000013730392628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014009294144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09b3db3492a1214c92afd1b5c67a3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
+  delay: 0.15
+  SetTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114000014262880608
 MonoBehaviour:
   m_ObjectHideFlags: 1

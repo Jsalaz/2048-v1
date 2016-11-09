@@ -30,12 +30,16 @@ public class Tile : MonoBehaviour {
 
 	public int rowLocation;
 	public int colLocation;
+	//public SpriteRenderer picture;
+	public Sprite picture;
+
 
 	//gets current number and image from tile
 	void Awake(){
 		_TileAnim = GetComponent<Animator> ();
 		_TileText = GetComponentInChildren<Text> ();
 		_TileImage = transform.GetComponent<Image> ();
+		//picture = transform.GetComponent<Sprite> ();
 		//_TileImage = transform.Find ("GameTileX").GetComponent<Image> ();
 	}
 
@@ -46,6 +50,8 @@ public class Tile : MonoBehaviour {
 		_TileImage.color = TileHolder.instance.Tiles [index].tileColor;
 		//changes tile text color
 		_TileText.color = TileHolder.instance.Tiles [index].tileTextColor;
+		//Changes the Image on the tile
+		_TileImage.sprite = TileHolder.instance.Tiles[index].SchoolLogo;
 	}
 
 	//checks for the number in game backend in order to apply the proper tile on game frontend
@@ -55,6 +61,7 @@ public class Tile : MonoBehaviour {
 
 		case 2:
 			ApplyTile (0);
+			//picture.sprite
 			break;
 		case 4:
 			ApplyTile (1);

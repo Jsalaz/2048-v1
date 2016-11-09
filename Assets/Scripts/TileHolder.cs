@@ -9,6 +9,7 @@ public class TileType{
 	public int tileNumber;
 	public Color32 tileColor;
 	public Color32 tileTextColor;
+	public Sprite SchoolLogo;
 
 }
 
