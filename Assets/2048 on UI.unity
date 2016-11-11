@@ -215,22 +215,22 @@ Prefab:
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -68
       objectReference: {fileID: 0}
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
@@ -240,7 +240,7 @@ Prefab:
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
@@ -250,7 +250,7 @@ Prefab:
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011670960792, guid: 8179574adbd8aca4ca5cad1f19b52bd4,
         type: 2}
@@ -2320,12 +2320,12 @@ Prefab:
     - target: {fileID: 114000013588252326, guid: 936c1c031a41ed74a81785e8dec25e77,
         type: 2}
       propertyPath: Tiles.Array.data[6].tileTextColor.rgba
-      value: 4294967295
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 114000013588252326, guid: 936c1c031a41ed74a81785e8dec25e77,
         type: 2}
       propertyPath: Tiles.Array.data[7].tileTextColor.rgba
-      value: 4294967295
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 114000013588252326, guid: 936c1c031a41ed74a81785e8dec25e77,
         type: 2}
